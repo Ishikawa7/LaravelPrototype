@@ -1,0 +1,51 @@
+body{
+	width:100%;
+	margin:0px;
+    background-color: #eca18c ;
+    margin-bottom: 40px;
+}
+
+html {
+  line-height: 1.5;
+  font-family: "Roboto", sans-serif;
+}
+
+#titolo {
+    color: #FFFFFF !important;
+    font-size: 3.6rem;
+    font-weight: 400;
+    margin: 1.78rem 0 1.424rem 0;
+}
+
+#user_info {
+    padding: 24px;
+    background-color: #fff;
+}
+
+#user_info_table{
+   margin-top: 30px;
+   margin-bottom: 80px;
+}
+
+#user_info h2 {
+    color: #eca18c ;
+    font-size: 1.3em;
+    text-shadow: -1.2px 0 #000, 0 1.2px #000, 1.2px 0 #000, 0 -1.2px #000; 
+    margin-bottom: 40px;;
+}
+
+ .tabella {
+     text-align: center;
+ }
+
+ .button {
+    line-height: 36px;
+    padding: 0 2rem;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #26a69a;
+    letter-spacing: .5px;
+    align-items: center;
+  }
+
+

@@ -1,0 +1,613 @@
+#links a {
+  cursor: pointer;
+}
+
+#links {
+   margin-right: 20px;
+}
+
+.button { 
+  cursor: pointer;
+}
+
+a.button {
+  padding: 5px 12px;
+  border: 2px solid #6dc5be;
+  border-radius: 100px;
+  text-align: center;
+}
+
+input.button { 
+  margin-top: 5px;
+  padding: 5px 12px;
+  border: 2px solid #6dc5be;
+  border-radius: 100px;
+  text-align: center;
+  color: blue;
+} 
+
+input.button:hover {
+  background-color: white;
+  color: black;
+}
+
+a.button:hover {
+  background-color: white;
+  color: black;
+}
+
+body {
+  color: rgba(26, 26, 26, .7);
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  margin: 0;
+}
+
+@media (max-width: 500px) {
+  body {
+      font-size: 13px;
+  }
+}
+
+.button,
+footer address,
+#links {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+header h1 {
+  font-size: 1em;
+  line-height: 1.5;
+  font-weight: normal;
+  text-align: center;
+  z-index: 1;
+}
+
+header h2 {
+  text-align: center;
+  color: #76f0f0;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000; 
+}
+
+h1 a.button {
+  border: 0;
+  background-color: #76f0f0;
+  display: inline-block;
+}
+
+h1 a.button:hover {
+  background-color: rgba(54, 179, 168, 0.75);
+  color: inherit;
+}
+
+header {
+  color: white;
+  background-image: url(https://image.freepik.com/premium-photo/paper-shopping-gift-bags-pink-background-with-copy-spa-e-concept-sales-shopping-black-friday_94725-116.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 500px) {
+  header {
+      height: 300px;
+      line-height: 1.2;
+  }
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+header h1 a {
+  font-size: 0.9em;
+}
+
+header h1 em {
+  font-size: 1.50em;
+  letter-spacing: 0.5px;
+  color: #c3e6fc;
+}
+
+@media (max-width: 500px) {
+  header h1 em {
+      font-size: 1em;
+  }
+}
+
+header h1 strong {
+  font-family: fantasy;
+  font-size: 4.25em;
+  letter-spacing: 3px;
+  color: #ffbdaa;
+}
+
+@media (max-width: 500px) {
+  header h1 strong {
+      font-size: 2em;
+      letter-spacing: 4px;
+  }
+}
+
+header nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: .875em;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#logo {
+  font-size: 1.7em;
+  font-style: italic;
+  display: inline-block;
+}
+
+@media (max-width: 500px) {
+  #logo {
+      font-size: 1em;
+  }
+}
+
+#menu {
+  display: none;
+}
+
+#menu div {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 5px 0;
+}
+
+@media (max-width: 500px) {
+  #links {
+      display: none;
+  }
+  #menu {
+      display: block;
+  }
+}
+
+#links a {
+  display: inline-block;
+  width: auto;
+  text-align: center;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.griglia {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+  justify-content: start;
+  align-items: center;
+  width: auto;
+  justify-items: normal;
+}
+
+.griglia div {
+  align-items: center;
+  width: calc(32.5% - 10px);
+  background-color: #f4f4f4;
+  border: 2px solid #dcdcdc;
+  margin-bottom: 20px;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  margin-left: 0.8%;
+  margin-right: 0.2%;
+}
+
+.griglia button {
+  background-color: white;
+  width: 76%;
+  font-family: 'Lora', serif;
+  font-style: oblique;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  color: black;
+  border: 2px solid #82e4e4;
+}
+
+.griglia img {
+  margin-bottom: 5px;
+  padding: 5px;
+  width: 95%;
+  height: auto;
+}
+
+@media(max-width: 900px) {
+  .griglia {
+      font-size: 0.85em;
+  }
+}
+
+@media(max-width: 800px) {
+  .griglia {
+      font-size: 0.85em;
+  }
+  .griglia p {
+      font-size: 0.8em;
+  }
+}
+
+@media(max-width: 650px) {
+  .griglia {
+      font-size: 0.75em;
+  }
+}
+
+@media(max-width: 600px) {
+  .griglia {
+      font-size: 0.45em;
+  }
+}
+
+@media(max-width: 550px) {
+  .griglia {
+      font-size: 1em;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: flex-start;
+  }
+  .griglia div {
+      width: 80%;
+      margin-right: 5%;
+  }
+}
+
+#grid h1 {
+  color: #6dc5be;
+  font-weight: bolder;
+  letter-spacing: 2px;
+  font-style: oblique;
+  font-size: 1.3em;
+}
+
+@media(max-width: 600px) {
+  #grid h1 {
+      font-size: 1.2em;
+  }
+}
+
+#grid p {
+  color: #e9967a;
+  margin: 5px;
+}
+
+#heart {
+  height: 30px;
+  width: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+@media (max-width: 700px) {
+  #heart {
+      width: 20px;
+      height: 20px;
+  }
+}
+
+@media (max-width: 550px) {
+  #heart {
+      width: auto;
+      height: 30px;
+  }
+}
+
+section {
+  margin: 15px 15px;
+  text-align: center;
+}
+
+@media (max-width: 500px) {
+  section {
+      margin: 30px 10px;
+  }
+}
+
+#main p {
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+  width: 80%;
+  font-size: 1.8em;
+  font-style: oblique;
+  color: #6dc5be;
+}
+
+@media (max-width: 500px) {
+  #main p {
+    width: 90%;
+    margin-bottom: 2em;
+  }
+}
+
+#main em {
+  display: block;
+  text-align: start;
+  margin-left: 30px;
+  font-size: 1.8em;
+}
+
+#main a {
+  display: block;
+  text-align: end;
+}
+
+#main h1 {
+  font-size: 1.80em;
+  font-weight: normal;
+  color: #82e4e4;
+  font-style: oblique;
+}
+
+p {
+  line-height: 2.25em;
+  margin: 0;
+}
+
+@media(max-width: 600px) {
+  .hidden {
+      font-size: 0.8em;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block ;
+}
+
+#descrizionePref {
+  font-size: 1em !important;
+  font-family: 'Lora', serif !important;
+  margin: 5px !important;
+  color: #e9967a !important;
+  width: 100% !important;
+  font-style: normal !important;
+  font-weight: corsive;
+}
+
+@media(max-width: 900px) {
+  #descrizionePref {
+      font-size: 1em !important;
+  }
+}
+
+@media(max-width: 800px) {
+  #descrizionePref {
+      font-size: 0.75em !important;
+  }
+}
+
+@media(max-width: 630px) {
+  #descrizionePref {
+      font-size: 0.72em !important;
+  }
+}
+
+@media(max-width: 600px) {
+  #descrizionePref {
+      font-size: 1.25em !important;
+  }
+}
+
+@media(max-width: 550px) {
+  #descrizionePref {
+      font-size: 1em !important;
+  }
+}
+
+#sectionPref h1 {
+  color: #6dc5be;
+  font-weight: bolder;
+  letter-spacing: 2px;
+  font-style: oblique;
+  font-size: 1.2em;
+}
+
+@media (max-width: 600px) and (min-width: 550px) {
+  #sectionPref h1 {
+      font-size: 1.8em;
+  }
+}
+
+@media(max-width: 600px) and (min-width: 550px) {
+  #sectionPref button {
+      font-size: 1.7em;
+  }
+}
+
+@media(max-width: 600px) and (min-width: 550px) {
+  #grid button {
+      font-size: 1.3em;
+  }
+}
+
+.containerSearch {
+  margin: 30px auto;
+  height: auto;
+  overflow: hidden;
+}
+
+.sinistro {
+  float: left;
+}
+
+.destro {
+  float: right;
+  margin-right: 40px;
+}
+
+@media (max-width: 600px) { 
+  .sinistro {
+      font-size: 0.9em; 
+  }
+  .destro {
+      font-size: 0.8em;
+      float: left;
+  }
+}
+
+@media (max-width: 790px) { 
+  #infoCountry {
+     float:left;
+     margin-right: 65px;
+  }
+}
+
+#sectionInfoCorona{
+  background-color: rgb(231, 231, 231);
+  margin: 30px 30px;
+  height: auto;
+  overflow: hidden;
+}
+
+#divInfoCountry {
+  padding: 10px;
+  font-size: 12px;
+  margin-top: 10px;
+  text-align: left;
+  margin-left: 30px; 
+} 
+
+#divInfo {
+  padding: 10px;
+  font-size: 12px;
+  margin-top: 10px;
+} 
+
+#infoGlobal{
+  margin-left: 30px; 
+  text-align: left;
+}
+
+#infoGlobal h1{
+ color: rgb(255, 41, 41);
+}
+
+#selectCountry {
+  width:250px;
+  padding:5px;
+  margin-top:10px;
+  margin-right: 100px;
+}
+
+@media (max-width: 600px) {
+    #selectCountry {
+    margin-left: 50px ;  
+  }
+    #infoCountry {
+    margin-left: 20px ;
+  }
+    #infoGlobal {
+    margin-left: 50px;
+  } 
+  } 
+
+#infoCountry h1, #divInfoM h1 {
+  color: rgb(255, 41, 41);
+  }
+
+  #divInfoM {
+  border-radius: 20px;
+}
+  #divInfo h1, #divInfoM h1{
+  font-size: 16px;
+}
+
+#divInfo h2, #divInfoM h2 {
+  font-size: 14px;
+  color: rgb(39, 39, 39);
+  font-family:monospace;
+}
+
+#divInfoCountry h1 {
+  font-size: 16px;
+}
+
+#divInfoCountry h2 {
+  font-size: 14px;
+  font-family:monospace;
+  color:rgb(39, 39, 39);
+}
+
+.btnVirus {
+  font-family: 'Open Sans', sans-serif;
+  margin-top: 5em;
+  padding: 5px 8px;
+  border: 1px solid black;
+  background-color:  rgb(255, 41, 41);
+  border-radius: 30px;
+  font-size: 0.9em;
+  color: white;
+}
+
+.btnMeteo {
+  display: inline-flex;
+  align-items: center ; 
+  font-family: 'Open Sans', sans-serif;
+  margin-top: 2.5em;
+  padding: 5px 20px;
+  border: 1px solid black;
+  background-color: #82e4e4;
+  border-radius: 20px;
+  font-size: 0.9em;
+  color: black;
+}
+
+#sectionMeteo{
+  background-color: rgb(255, 255, 149);
+  margin: 30px 30px; 
+  height: auto;
+  overflow: hidden;
+}
+
+#newsletter {
+  display: flex;
+  justify-content: center;
+  border-color: #bc5d4f;
+}
+
+.recensioni{
+  color:rgba(26, 26, 26, .7) !important;
+}
+
+footer {
+  background-color: #bc5d4f;
+  color: whitesmoke;
+  padding: 25px;
+  text-align: center;
+  margin-top: 2em;
+}
+
+footer p {
+  color: rgba(255, 255, 255, 0.616);
+}
