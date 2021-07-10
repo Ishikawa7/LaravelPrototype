@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\User;
 use App\Models\Admin;
+use Illuminate\Support\Facades\Http;
 
 class HomeController extends BaseController
 {
@@ -25,7 +26,11 @@ class HomeController extends BaseController
     
     //URL: 'https://api.covid19api.com/summary'
     public function covid_api(){
-       
+        $response = Http::get('https://api.covid19api.com/summary'); 
+
+        if($response->failed()) abort(500);
+
+        return $response->json();
     }
 }
 ?>
