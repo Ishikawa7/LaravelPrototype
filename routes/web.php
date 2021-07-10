@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 });  */
 
-Route::get('home','HomeController@index');
+Route::get('home','HomeController@index'); 
 
-Route::get('home/UserTypeVerification','HomeController@UserTypeVerification');
+Route::get('login','LoginController@login');
+
+Route::post('login','LoginController@checkLogin');
+
+Route::get('logout','LoginController@logout');

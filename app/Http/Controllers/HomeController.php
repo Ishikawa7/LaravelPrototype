@@ -12,7 +12,7 @@ class HomeController extends BaseController
         $user= User::find(session('id'));
         $admin= Admin::find(session('id'));
 
-        if($user!=null){
+       if($user!=null){
             return view('home')
               ->with('nome',$user->email);
         }elseif($admin!=null){
@@ -23,20 +23,5 @@ class HomeController extends BaseController
             ->with('nome',null);
     }
     
-    
-    public function UserTypeVerification(){
-        $user= User::find(session('id'));
-        $admin= Admin::find(session('id'));
-        
-        if($user!=null){
-            return view('home')
-              ->with('result',$user->department_code);
-        }elseif ($admin!=null){
-            return view('home')
-               ->with('result',$admin->department_code);
-        }
-        return  view('home')
-            ->with('result',0);
-    }
 }
 ?>
