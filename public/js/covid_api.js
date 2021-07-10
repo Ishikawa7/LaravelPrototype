@@ -122,62 +122,58 @@ function infoCountry(){
     
     const element = document.getElementById('divInfoCountry');
     if(element!=null){
-      element.remove();
+        element.remove();
     }
   
     var tipo = document.getElementById("selectCountry");
     const country = tipo.value;
     
-    for( index in Json.Countries)
-    {
-      if(Json.Countries[index].Country == country){
-        
-        const div = document.getElementById("infoCountry");
-    
-        const divInfo = document.createElement('div');
-        divInfo.id="divInfoCountry";
-  
-        const elemento = document.createElement('h1');
-        elemento.textContent = "Informazioni "+ country;
-        divInfo.appendChild(elemento);
-        
-        for(info in Json.Countries[index]){
-          if (info == "ID" || info == "Premium"){
-            continue;
-          }
-          const elemento = document.createElement('h2');
-          
-          if(info=="Date"){
-            elemento.textContent = 'Data: ' +  Json.Countries[index][info].split("T")[0] ;
-          } 
-          if(info == 'Country') {
-            elemento.textContent = 'Stato: ' + Json.Countries[index][info];
-          }
-          if(info == 'CountryCode') {
-            elemento.textContent = 'Prefisso internazionale: ' + Json.Countries[index][info];
-          }
-          if(info == 'NewConfirmed') {
-          elemento.textContent = 'Nuovi casi confermati: ' + Json.Countries[index][info];
-          }
-          if(info == 'NewRecovered') {
-            elemento.textContent = 'Nuovi ricoveri: ' + Json.Countries[index][info];
+    for( index in Json.Countries){
+        if(Json.Countries[index].Country == country){
+            const div = document.getElementById("infoCountry");
+            const divInfo = document.createElement('div');
+            divInfo.id="divInfoCountry"
+            const elemento = document.createElement('h1');
+            elemento.textContent = "Informazioni "+ country;
+            divInfo.appendChild(elemento);
+            
+            for(info in Json.Countries[index]){
+                if (info == "ID" || info == "Premium"){
+                continue;
+                }
+                const elemento = document.createElement('h2');
+                
+                if(info=="Date"){
+                    elemento.textContent = 'Data: ' +  Json.Countries[index][info].split("T")[0] ;
+                } 
+                if(info == 'Country') {
+                    elemento.textContent = 'Stato: ' + Json.Countries[index][info];
+                }
+                if(info == 'CountryCode') {
+                    elemento.textContent = 'Prefisso internazionale: ' + Json.Countries[index][info];
+                }
+                if(info == 'NewConfirmed') {
+                    elemento.textContent = 'Nuovi casi confermati: ' + Json.Countries[index][info];
+                }
+                if(info == 'NewRecovered') {
+                    elemento.textContent = 'Nuovi ricoveri: ' + Json.Countries[index][info];
+                }
+                if(info == 'NewDeaths') {
+                    elemento.textContent = 'Nuovi deceduti: ' + Json.Countries[index][info];
+                }
+                if(info == 'TotalConfirmed') {
+                    elemento.textContent = 'Totale casi confermati: ' + Json.Countries[index][info];
+                }
+                if(info == 'TotalDeaths') {
+                    elemento.textContent = 'Totale deceduti: ' + Json.Countries[index][info];
+                }
+                if(info == 'TotalRecovered') {
+                    elemento.textContent = 'Totale ricoveri: ' +  Json.Countries[index][info]; 
+                } 
+                divInfo.appendChild(elemento);
             }
-          if(info == 'NewDeaths') {
-            elemento.textContent = 'Nuovi deceduti: ' + Json.Countries[index][info];
-            }
-          if(info == 'TotalConfirmed') {
-            elemento.textContent = 'Totale casi confermati: ' + Json.Countries[index][info];
-            }
-          if(info == 'TotalDeaths') {
-            elemento.textContent = 'Totale deceduti: ' + Json.Countries[index][info];
-            }
-          if(info == 'TotalRecovered') {
-            elemento.textContent = 'Totale ricoveri: ' +  Json.Countries[index][info]; 
-            } 
-          divInfo.appendChild(elemento);
+            div.appendChild(divInfo);
         }
-        div.appendChild(divInfo);
-      }
     }
 }
   

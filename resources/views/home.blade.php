@@ -10,6 +10,7 @@
       <link rel="stylesheet" href="{{url('css/index.css')}}">
      <!--  <script type="text/javascript" src='script.js' defer="true"></script> -->
       <script type="text/javascript" src="{{url('js/covid_api.js')}}" defer="true"></script>
+      <script type="text/javascript" src="{{url('js/meteo_api.js')}}" defer="true"></script>
       
    </head>
 <body> 
@@ -116,7 +117,7 @@
       
       <div class="infoMeteo">
          <button id="btnInfoMeteo" class="btnMeteo">
-          <img src = "./Immagini/meteo2.jpg">
+          <img src = "{{url('css/meteo2.jpg')}}">
           Previsioni <br> metereologiche
         </button>  
       </div> 
@@ -126,7 +127,7 @@
               <input type="text" id="ricercaMeteo" name="search" placeholder="Cerca città"/>
               <input type="button" value="Cerca" onclick="meteoCitta(document.getElementById('ricercaMeteo').value)"/>
             </em>
-        <div id="infoMain"></div> 
+      <div id="infoMain"></div> 
       </section> 
 
     </section>  
