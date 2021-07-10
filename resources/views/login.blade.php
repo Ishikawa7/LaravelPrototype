@@ -25,7 +25,7 @@
             <input type='hidden' name='_token' value='{{$csrf_token}}'> 
             <div>
                 <p>
-                    <input type = 'checkbox' name='checkbox' id="checkbox" value='1'>
+                    <input type = 'checkbox' name='checkbox' id="checkbox" value="admin">
                     <label>Clicca qui se sei un admin del sito </label> <span id="checkBox"></span>  
                 </p>  
             </div>
@@ -38,7 +38,7 @@
             <div>
                <p>
                   	<label>Password:</label>
-                    <input type="password" id="pass" name="pass" />            
+                    <input type="password" id="password" name="password" />          
                </p>
             </div>
             <p>

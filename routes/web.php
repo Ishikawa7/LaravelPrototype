@@ -24,9 +24,10 @@ Route::get('login','LoginController@login');
 Route::post('login','LoginController@checkLogin');
 
 Route::get('logout','LoginController@logout');
-Route::get('home','HomeController@index');
+
 /* Route::get('home','HomeController@load_products'); */
 Route::get('home/covid_api','HomeController@covid_api');
+
 Route::get('home/meteo_api/{city_name}','HomeController@meteo_api');
 
 Route::get('user','UserController@index');

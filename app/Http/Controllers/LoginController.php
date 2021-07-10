@@ -10,26 +10,25 @@ use App\Models\Admin;
 class LoginController extends BaseController
 {
     public function login(){
-        //verifico se l'utente ha già fatto il login
-        if(session('id')!=null){
+        //verifico se l'utente o un admin ha già fatto il login
+        if(session('user_id')==null && session('admin_id')==null){
+            //errore nel login
+            return view('login')
+                ->with('csrf_token',csrf_token());
+        }else{
            return redirect('home');
-       }else{
-           //Verifichiamo se c'è stato un'errore nel login
-           return view('login')
-           ->with('csrf_token',csrf_token());
        } 
     
     }
 
 public function checkLogin(){
-    if(request('checkbox')==1){
+    if(request('checkbox')=="admin"){
         $admin = Admin::where('email',request('email'))->where('password',request('password'))->first(); 
         if(isset($admin)){
             //credenziali valide
             Session::put('admin_id',$admin->id);
-            Session::put('isAdmin',1);
             return view('home')
-                ->with('nome',$user->nome);
+                ->with('nome',$admin->email);
         }else{
             return view('login')
                 ->with('csrf_token',csrf_token());
@@ -40,7 +39,7 @@ public function checkLogin(){
             //credenziali valide
             Session::put('user_id',$user->id);
             return view('home')
-                ->with('nome',$user->nome);
+                ->with('nome',$user->email);
         }else{
             return view('login')
                 ->with('csrf_token',csrf_token());
