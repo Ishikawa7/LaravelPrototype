@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Admin extends Authenticatable
 {
-
+   
     protected $fillable = [
         'email',
         'sale',
-        'spesaTotSpedizioni',
-        'department_code'=> 2
+        'department_code'=> 1
     ];
 
     protected $hidden = [

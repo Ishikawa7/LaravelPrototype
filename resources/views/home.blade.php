@@ -1,15 +1,5 @@
-<?php  
-/* include 'funzioni.php';
-checkHTTPS();
-session_start();
-
-
-if(isset($_SESSION['login_user'])){
-    check_login();           
-} */
-?> 
-
 <!DOCTYPE html>
+
 <html>
     
    <head>
@@ -28,46 +18,32 @@ if(isset($_SESSION['login_user'])){
         <h1> Il sito non funzionera correttamente</h1>
       </div>  
    </noscript>
- 
-    <?php    
-       /*  if(isset($_REQUEST['msg'])){  
-         $msg = $_REQUEST['msg'];
-         $msg = strip_tags($msg);	 */
-            
-?>
-        	<div id="messaggio"><?php/*  echo $msg; ?></div>
-<?php } */?> 
+        	
+   <div id="messaggio"></div>
+
 
     <header>
       <nav> 
         <a id="logo">Il lusso a portata di click!</a> 
         
         <div id="links">
-          <a class="button" href="index.php">Home</a>
+          <a class="button" href="{{url('home')}}">Home</a>
 
-          <?php
-  
-          /* if(isset($_SESSION['login_admin']))
-          { */
-          ?>    
+          @if(@isset($result)==1) {
+            
             <a class="button" href="admin_pannel.html">Pannello Admin</a>
             <a class="button" href="logout.php">Logout</a>
-
-          <?php 
-         /*  } else if (isset($_SESSION['login_user'])) { */
-              ?>     
+          } 
+          @elseif(@isset($result)==2) {     
               <a class="button" href="user_info.html">Info Utente</a> 
               <a class="button" href="carrello.php">Carrello</a>
               <a class="button" href="logout.php">Logout</a>
-              
-          <?php   
-          /* } else if (!isset($_SESSION['login_user'])) { */
-          ?>          
-              <a class="button" href="login.php">Accedi</a>
-              <a class = "button" href = "registrazione.php">Registrati</a>  
-          <?php   
-          /* } */
-          ?>  
+            }     
+          elseif (!@isset(session())){
+            <a class="button" href="login.php">Accedi</a>
+            <a class = "button" href = "registrazione.php">Registrati</a>  
+           }          
+          @endif
         </div>
 
 		   <div id="menu">
@@ -83,14 +59,9 @@ if(isset($_SESSION['login_user'])){
         <a class="button">Scopri di piu'</a>
       </h1>
 
-      <?php
-            /* if(isset($_SESSION['login_user'])) 
-            { */
-      ?>          
-             <h2> Benvenuto <br><?php/*  echo $_SESSION['login_user'];  */?> ! </h2> 
-       <?php
-     /*  } */
-      ?>
+      @if(session()->has('user_id'))
+          <h3>Benvenuto,{{$nome}}!</h3>
+        @endif
 
     </header>
 
