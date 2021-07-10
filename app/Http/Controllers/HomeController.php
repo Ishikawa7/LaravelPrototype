@@ -23,20 +23,9 @@ class HomeController extends BaseController
             ->with('nome',null);
     }
     
-    
-    public function UserTypeVerification(){
-        $user= User::find(session('id'));
-        $admin= Admin::find(session('id'));
-        
-        if($user!=null){
-            return view('home')
-              ->with('result',$user->department_code);
-        }elseif ($admin!=null){
-            return view('home')
-               ->with('result',$admin->department_code);
-        }
-        return  view('home')
-            ->with('result',0);
+    //URL: 'https://api.covid19api.com/summary'
+    public function covid_api(){
+       
     }
 }
 ?>

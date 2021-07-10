@@ -59,9 +59,10 @@
         <a class="button">Scopri di piu'</a>
       </h1>
 
-      @if(session()->has('user_id'))
+      @if(session()->has('user_id')){
           <h3>Benvenuto,{{$nome}}!</h3>
-        @endif
+      }
+      @endif
 
     </header>
 

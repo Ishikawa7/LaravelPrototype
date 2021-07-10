@@ -18,5 +18,10 @@ use Illuminate\Support\Facades\Route;
 });  */
 
 Route::get('home','HomeController@index');
+Route::get('home','HomeController@load_products');
+Route::get('home','HomeController@covid_api');
+Route::get('home','HomeController@meteo_api');
 
-Route::get('home/UserTypeVerification','HomeController@UserTypeVerification');
+Route::get('user','UserController@index');
+
+Route::get('admin','AdminController@index');
