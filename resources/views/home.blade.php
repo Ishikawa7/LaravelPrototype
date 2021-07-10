@@ -7,8 +7,10 @@
       <title>Luxury Shopping</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link href="https://fonts.googleapis.com/css?family=Lora:400,400i|Open+Sans:400,700" rel="stylesheet"> 
-      <link rel="stylesheet" href="{{url('css/index1.css')}}">
-      <!-- <script type="text/javascript" src="{{url('js/script.js')}}" defer="true"></script> -->
+      <link rel="stylesheet" href="{{url('css/index.css')}}">
+     <!--  <script type="text/javascript" src='script.js' defer="true"></script> -->
+      <script type="text/javascript" src="{{url('js/covid_api.js')}}" defer="true"></script>
+      <script type="text/javascript" src="{{url('js/meteo_api.js')}}" defer="true"></script>
       
    </head>
 <body> 
@@ -29,17 +31,21 @@
         <div id="links">
           <a class="button" href="{{url('home')}}">Home</a>
 
-        
-
-            <a class="button" href="{{url('home')}}">Pannello Admin</a>
-            <a class="button" href="{{url('logout')}}">Logout</a>
-        
-              <a class="button" href="{{url('home')}}">Info Utente</a> 
-              <a class="button" href="{{url('home')}}">Carrello</a>
-              <a class="button" href="{{url('logout')}}">Logout</a>
-          
-            <a class="button" href="{{url('login')}}">Accedi</a>
-            <a class = "button" href="{{url('home')}}">Registrati</a>  
+          @if(1) {
+            
+            <a class="button" href="admin_pannel.html">Pannello Admin</a>
+            <a class="button" href="logout.php">Logout</a>
+          } 
+          @elseif(1) {     
+              <a class="button" href="user_info.html">Info Utente</a> 
+              <a class="button" href="carrello.php">Carrello</a>
+              <a class="button" href="logout.php">Logout</a>
+            }     
+          @elseif(1){
+            <a class="button" href="login.php">Accedi</a>
+            <a class = "button" href = "registrazione.php">Registrati</a>  
+           }          
+          @endif
         </div>
 
 		   <div id="menu">
@@ -56,8 +62,6 @@
       </h1>
 
       @if(session()->has('user_id'))
-          <h3>Benvenuto,{{$nome}}!</h3>
-      @elseif(session()->has('admin_id')) 
           <h3>Benvenuto,{{$nome}}!</h3>
       @endif
 
@@ -123,7 +127,7 @@
               <input type="text" id="ricercaMeteo" name="search" placeholder="Cerca città"/>
               <input type="button" value="Cerca" onclick="meteoCitta(document.getElementById('ricercaMeteo').value)"/>
             </em>
-        <div id="infoMain"></div> 
+      <div id="infoMain"></div> 
       </section> 
 
     </section>  
