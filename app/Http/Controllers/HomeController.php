@@ -6,6 +6,7 @@ use Illuminate\Routing\Controller as BaseController;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\Product;
+use App\Models\Review;
 use Illuminate\Support\Facades\Http;
 
 class HomeController extends BaseController
@@ -36,6 +37,15 @@ class HomeController extends BaseController
         
         $products = Review::all();
         return $products;
+        
+    }
+
+    public function add_review($text, $id){     
+        return Review::create([
+            'TestoRecensione' => $text,
+            'CodUtente' => session('user_id'),
+            'CodProdotto' => $id
+        ]);
         
     }
     
