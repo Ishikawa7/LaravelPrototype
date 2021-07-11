@@ -33,11 +33,11 @@
 
           @if(session('admin_id')!==null)
             
-            <a class="button" href="{{url('home')}}">Pannello Admin</a>
+            <a class="button" href="{{url('admin_pannel')}}">Pannello Admin</a>
             <a class="button" href="{{url('logout')}}">Logout</a>
           
           @elseif(session('user_id')!==null) 
-              <a class="button" href="{{url('home')}}">Info Utente</a> 
+              <a class="button" href="{{url('user_info')}}">Info Utente</a> 
               <a class="button" href="{{url('home')}}">Carrello</a>
               <a class="button" href="{{url('logout')}}">Logout</a>
 

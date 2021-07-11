@@ -34,6 +34,13 @@ Route::get('registration','RegistrationController@index');
 Route::post('registration/create','RegistrationController@create');
 
 Route::post('registration/email','RegistrationController@checkEmail');
+//sto modificando da qui admin pannel
+
+Route::get('admin_pannel','AdminPannelController@index');
+
+//sto modificando da qui user info
+
+Route::get('user_info','UserInfoController@index');
 
 Route::get('home/covid_api','HomeController@covid_api');
 
