@@ -31,20 +31,20 @@
         <div id="links">
           <a class="button" href="{{url('home')}}">Home</a>
 
-          @if(1) {
+          @if(session('admin_id')!==null)
             
-            <a class="button" href="admin_pannel.html">Pannello Admin</a>
-            <a class="button" href="logout.php">Logout</a>
-          } 
-          @elseif(1) {     
-              <a class="button" href="user_info.html">Info Utente</a> 
-              <a class="button" href="carrello.php">Carrello</a>
-              <a class="button" href="logout.php">Logout</a>
-            }     
-          @elseif(1){
-            <a class="button" href="login.php">Accedi</a>
-            <a class = "button" href = "registrazione.php">Registrati</a>  
-           }          
+            <a class="button" href="{{url('home')}}">Pannello Admin</a>
+            <a class="button" href="{{url('logout')}}">Logout</a>
+          
+          @elseif(session('user_id')!==null) 
+              <a class="button" href="{{url('home')}}">Info Utente</a> 
+              <a class="button" href="{{url('home')}}">Carrello</a>
+              <a class="button" href="{{url('logout')}}">Logout</a>
+
+          @elseif(!(session('admin_id')!==null && session('admin_id')!==null))
+            <a class="button" href="{{url('login')}}">Accedi</a>
+            <a class = "button" href = "{{url('registration')}}">Registrati</a>  
+                     
           @endif
         </div>
 
@@ -62,6 +62,10 @@
       </h1>
 
       @if(session()->has('user_id'))
+          <h3>Benvenuto,{{$nome}}!</h3>
+      @endif
+
+      @if(session()->has('admin_id'))
           <h3>Benvenuto,{{$nome}}!</h3>
       @endif
 

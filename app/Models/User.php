@@ -9,9 +9,9 @@ class User extends Authenticatable
 
     protected $fillable = [
         'email',
+        'password',
         'sale',
-        'spesaTotSpedizioni',
-        'department_code'=> 2
+        'spesaTotSpedizioni'
     ];
 
     protected $hidden = [

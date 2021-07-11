@@ -20,7 +20,21 @@ use Illuminate\Support\Facades\Route;
 Route::get('home','HomeController@index');
 Route::get('home/load_products','HomeController@load_products');
 Route::get('home/load_reviews','HomeController@load_reviews');
+
+Route::get('login','LoginController@login');
+
+Route::post('login','LoginController@checkLogin');
+
+Route::get('logout','LoginController@logout');
+
+Route::get('registration','RegistrationController@index');
+
+Route::post('registration/create','RegistrationController@create');
+
+Route::post('registration/email','RegistrationController@checkEmail');
+
 Route::get('home/covid_api','HomeController@covid_api');
+
 Route::get('home/meteo_api/{city_name}','HomeController@meteo_api');
 
 Route::get('get_session', function() {
