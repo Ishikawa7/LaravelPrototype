@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class RegistrationController extends BaseController
 {
+    public function index(){
+        return view('registration')
+           ->with('csrf_token',csrf_token());
+    }
+
     public function create(){
         $request = request();
         
@@ -54,11 +59,6 @@ class RegistrationController extends BaseController
             }
             return $ceck_result;
         }
-    }
-
-    public function index(){
-        return view('registration')
-           ->with('csrf_token',csrf_token());
     }
 }
 ?>

@@ -26,11 +26,11 @@ function checkEmail(email)
       .then(response =>{
         console.log(response);  
         if (response.exists==false){
-          document.getElementById("logemail").style.color='green'; 
-          document.getElementById('logemail').innerHTML="&nbsp&nbsp&nbsp&nbsp Email corretta e mai usata";
+            document.getElementById("logemail").style.color='green'; 
+            document.getElementById('logemail').innerHTML="&nbsp&nbsp&nbsp&nbsp Email corretta e mai usata";
         }else{
-          document.getElementById("logemail").style.color='red';  
-          document.getElementById('logemail').innerHTML="&nbsp&nbsp&nbsp&nbsp Email gia usata";  
+            document.getElementById("logemail").style.color='red';  
+            document.getElementById('logemail').innerHTML="&nbsp&nbsp&nbsp&nbsp Email gia usata";  
         }
         
       })

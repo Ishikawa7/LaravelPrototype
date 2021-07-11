@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Http;
 class HomeController extends BaseController
 {
     public function index(){
-        $user= User::find(session('id'));
-        $admin= Admin::find(session('id'));
+        $user= User::find(session('user_id'));
+        $admin= Admin::find(session('admin_id'));
 
        if($user!=null){
             return view('home')
@@ -36,8 +36,8 @@ class HomeController extends BaseController
 
     public function load_reviews(){
         
-        $products = Review::all();
-        return $products;
+        $reviews = Review::all();
+        return $reviews;
         
     }
 
