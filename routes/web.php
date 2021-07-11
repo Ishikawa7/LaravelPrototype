@@ -25,6 +25,10 @@ Route::get('home/load_reviews','HomeController@load_reviews');
 
 Route::get('home/add_review/{text}/{id}','HomeController@add_review');
 
+Route::get('home/add_favourites/{id}','HomeController@add_favourites');
+
+Route::get('home/remove_favourites/{id}','HomeController@remove_favourites');
+
 Route::get('login','LoginController@login');
 
 Route::post('login','LoginController@checkLogin');

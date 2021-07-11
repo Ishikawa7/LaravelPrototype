@@ -1,3 +1,7 @@
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+///////////////////////////////////   GET SESSIONE   //////////////////////////////////////////
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 var Sessione = 'null';
 
 function fetchSession(){
@@ -10,6 +14,10 @@ function fetchSession(){
         /* console.log(Sessione); */
     });
 }
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+///////////////////////////////////CARICAMENTO PRODOTTI//////////////////////////////////////////
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 function fetchRequestGrid() {
 
@@ -82,6 +90,10 @@ function createGrid(json) {
     }
 }
 
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+///////////////////////////////////    RECENSIONI     //////////////////////////////////////////
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 /*Recensioni
 E' possibile visualizzare le recensioni relative ad un articolo e scrivere una nuova recensione solo
 se si è loggati*/
@@ -133,6 +145,10 @@ function refreshReview(json){
         console.error("Nessuna informazione dal database");  
     }
 }
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+///////////////////////////////////     PREFERITI     //////////////////////////////////////////
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 /*Inserisco nella sezione Preferiti*/
 /*E' possibile inserire un articolo nei Preferiti solo se si è loggati*/
@@ -246,8 +262,59 @@ function insertIntoPref(section,source) {
     box.appendChild(dettagli);
     box.appendChild(pref);
     section.appendChild(box);
-    //FETCHADDPREF!!!!
 }
+
+function getCuori() {
+    const bottone = document.querySelectorAll(".cuore");
+    for(const b of bottone) {
+        console.log(b);
+        b.addEventListener("click", fetchInsert);
+    }
+    /* console.log(bottone); */
+}
+
+function onResponseText(response){
+/*     console.log(response);
+    if (response.status >= 200 && response.status < 300) { */
+        return response.text();
+/*     }
+    console.error(response.statusText); */
+}
+
+function fetchInsert(event){
+    const img = event.currentTarget;
+    /* console.log(img); */
+    const div = img.parentNode;
+    div.childNodes[5].removeEventListener("click", fetchInsert);
+    div.childNodes[5].addEventListener("click", fetchRemove);
+    /* console.log(div.childNodes[5]); */
+
+   /*  console.log(div); */
+    const codProdotto = div.id;
+    /* console.log(codProdotto); */
+
+    fetch("home/add_favourites/"+codProdotto).then(onResponseText).then(text=>{
+        console.log(text);
+    });
+}
+
+function fetchRemove(event){
+    
+    const img = event.currentTarget;
+    
+    img.removeEventListener("click", fetchRemove);
+    img.addEventListener("click", fetchInsert);
+    const div = img.parentNode;
+    const codProdotto = div.id;
+    
+    fetch("home/remove_favourites/"+codProdotto).then(onResponseText).then(text=>{
+        console.log(text);
+  });
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+///////////////////////////////////FUNZIONE DI RICERCA//////////////////////////////////////////
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 /*Per effettuare la ricerca, porto il contenuto della casella di testo in minuscolo
 per non avere errori di case sensitive. 
@@ -281,6 +348,10 @@ function cerca(){
     }
 }
 
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+///////////////////////////////////     DETTAGLI      //////////////////////////////////////////
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 /*Ho usato visibility anzichè display in modo da allocare lo spazio ma 
 non renderlo visibile*/
 function mostraDettagli(event){
@@ -308,6 +379,11 @@ function nascondiDettagli(event){
     button.addEventListener('click',mostraDettagli);
 }
 
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+/////////////////////////////////// ATTIVATE AL CARICAMENTO//////////////////////////////////////////
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 fetchSession();
 fetchRequestGrid();
 fetchReviews();
+setTimeout(getCuori, 1000);
