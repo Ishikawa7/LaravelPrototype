@@ -42,7 +42,7 @@
 
           @elseif(!(session('admin_id')!==null && session('admin_id')!==null))
             <a class="button" href="{{url('login')}}">Accedi</a>
-            <a class = "button" href = "{{url('home')}}">Registrati</a>  
+            <a class = "button" href = "{{url('registration')}}">Registrati</a>  
                      
           @endif
         </div>

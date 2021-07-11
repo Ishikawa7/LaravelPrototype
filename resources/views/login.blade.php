@@ -51,7 +51,7 @@
          
         	<p>Non hai un account?</p>
         
-            <button type="button" class="btn"> <a href='{{url("home")}}'>Iscriviti</a> </button>
+            <button type="button" class="btn"> <a href='{{url("registration")}}'>Iscriviti</a> </button>
        
     </div>
 	  
