@@ -1,8 +1,27 @@
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+///////////////////////////////////   GET SESSIONE   //////////////////////////////////////////
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+var Sessione = 'null';
+
+function fetchSession(){
+    fetch('get_session').then(response => {
+        /* console.log(response); */
+        return response.text();
+    }).then(text => {
+        /* console.log(text); */
+        Sessione = text;
+        /* console.log(Sessione); */
+    });
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+///////////////////////////////////CARICAMENTO PRODOTTI//////////////////////////////////////////
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 function fetchRequestGrid() {
 
     url="home/load_products";
-    /* var formData = new FormData();
-    formData.append('fetchRequest', 'Grid'); */
   
     fetch(url).then((response) => {
        /*  console.log(response); */
@@ -22,7 +41,7 @@ function createGrid(json) {
     for(let i=0; i < json.length; i++) {
         
         const box = document.createElement('div');
-        box.id = json[i]['CodProdotto'];
+        box.id = json[i]['id'];
         box.classList.add("visible"); 
         
         const titolo = document.createElement('h1');
@@ -33,7 +52,7 @@ function createGrid(json) {
         
         const pref = document.createElement('img');
         pref.id = "heart";
-        pref.src = "./Immagini/unchecked_.png";
+        pref.src = "./css/unchecked_.png";
         pref.classList.add("cuore");
         pref.addEventListener('click',insertPref);
         
@@ -63,12 +82,17 @@ function createGrid(json) {
         box.appendChild(dettagli);    
         
         /*Se l'utente è loggato può inserire gli articoli nei preferiti e scrivere le recensioni*/
-        /* if(Sessione=="True"){
+
+        if(Sessione=="user"){
             box.appendChild(pref);
-        box.appendChild(textarea);
-    } */
+            box.appendChild(textarea);
+        }
     }
 }
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+///////////////////////////////////    RECENSIONI     //////////////////////////////////////////
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 /*Recensioni
 E' possibile visualizzare le recensioni relative ad un articolo e scrivere una nuova recensione solo
@@ -79,19 +103,19 @@ function fetchReviews(event){
 }
   
 function fetchAddReview(event){
-   /*  const text = event.currentTarget.value;
+    const text = event.currentTarget.value;
     const id = event.target.parentNode.id;
     if(event.key === 'Enter'){
         event.currentTarget.value = "";
-        text.replace(" ", "&");
-        const URL = "products_addReview.php?text="+text+"&id="+id;
-        console.log(URL);
+        /* text.replace(" ", "&"); */
+        const URL = "home/add_review/"+text+"/"+id;
+        /* console.log(URL); */
         fetch(URL).then(onResponseJson).then(fetchReviews);
-    } */
+    }
 }
   
 function onResponseJson(response){
-    console.log(response);
+    /* console.log(response); */
     /* if (response.status >= 200 && response.status < 300) { */
         return response.json();
    /*  } */
@@ -99,7 +123,7 @@ function onResponseJson(response){
 }
 
 function refreshReview(json){
-    console.log(json);
+    /* console.log(json); */
     const reviews = document.querySelectorAll(".recensioni");
 
     for(const r of reviews) {
@@ -108,8 +132,10 @@ function refreshReview(json){
 
     if(json!==""){
         for(key in json){
+            /* console.log(key);
+            console.log(json[key].CodProdotto); */
             const div = document.getElementById(json[key].CodProdotto);
-            
+            /* console.log(div); */
             const p = document.createElement("p");
             p.textContent = json[key].TestoRecensione+" (da utente "+json[key].CodUtente+")";
             p.classList.add("recensioni");
@@ -119,6 +145,10 @@ function refreshReview(json){
         console.error("Nessuna informazione dal database");  
     }
 }
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+///////////////////////////////////     PREFERITI     //////////////////////////////////////////
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 /*Inserisco nella sezione Preferiti*/
 /*E' possibile inserire un articolo nei Preferiti solo se si è loggati*/
@@ -153,7 +183,7 @@ function removePref(event) {
     const pref = event.currentTarget;
     
     /*Cambio l'immagine del cuore*/
-    pref.src = "./Immagini/unchecked_.png"; 
+    pref.src = "./css/unchecked_.png"; 
     pref.removeEventListener('click', removePref);
     pref.addEventListener('click',insertPref);
   
@@ -178,7 +208,7 @@ function removePref(event) {
     const griglia = document.querySelectorAll('#grid div'); 
     for(const div of griglia) {  
         if(div.id == idSource) {
-            div.childNodes[5].src = "./Immagini/unchecked_.png";
+            div.childNodes[5].src = "./css/unchecked_.png";
             div.childNodes[5].removeEventListener('click',removePref); 
             div.childNodes[5].addEventListener('click',insertPref);
         }
@@ -232,8 +262,59 @@ function insertIntoPref(section,source) {
     box.appendChild(dettagli);
     box.appendChild(pref);
     section.appendChild(box);
-    //FETCHADDPREF!!!!
 }
+
+function getCuori() {
+    const bottone = document.querySelectorAll(".cuore");
+    for(const b of bottone) {
+        console.log(b);
+        b.addEventListener("click", fetchInsert);
+    }
+    /* console.log(bottone); */
+}
+
+function onResponseText(response){
+/*     console.log(response);
+    if (response.status >= 200 && response.status < 300) { */
+        return response.text();
+/*     }
+    console.error(response.statusText); */
+}
+
+function fetchInsert(event){
+    const img = event.currentTarget;
+    /* console.log(img); */
+    const div = img.parentNode;
+    div.childNodes[5].removeEventListener("click", fetchInsert);
+    div.childNodes[5].addEventListener("click", fetchRemove);
+    /* console.log(div.childNodes[5]); */
+
+   /*  console.log(div); */
+    const codProdotto = div.id;
+    /* console.log(codProdotto); */
+
+    fetch("home/add_favourites/"+codProdotto).then(onResponseText).then(text=>{
+        console.log(text);
+    });
+}
+
+function fetchRemove(event){
+    
+    const img = event.currentTarget;
+    
+    img.removeEventListener("click", fetchRemove);
+    img.addEventListener("click", fetchInsert);
+    const div = img.parentNode;
+    const codProdotto = div.id;
+    
+    fetch("home/remove_favourites/"+codProdotto).then(onResponseText).then(text=>{
+        console.log(text);
+  });
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+///////////////////////////////////FUNZIONE DI RICERCA//////////////////////////////////////////
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 /*Per effettuare la ricerca, porto il contenuto della casella di testo in minuscolo
 per non avere errori di case sensitive. 
@@ -267,6 +348,10 @@ function cerca(){
     }
 }
 
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+///////////////////////////////////     DETTAGLI      //////////////////////////////////////////
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 /*Ho usato visibility anzichè display in modo da allocare lo spazio ma 
 non renderlo visibile*/
 function mostraDettagli(event){
@@ -293,7 +378,12 @@ function nascondiDettagli(event){
     button.removeEventListener('click',nascondiDettagli);
     button.addEventListener('click',mostraDettagli);
 }
-  
 
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+/////////////////////////////////// ATTIVATE AL CARICAMENTO//////////////////////////////////////////
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+fetchSession();
 fetchRequestGrid();
 fetchReviews();
+setTimeout(getCuori, 1000);

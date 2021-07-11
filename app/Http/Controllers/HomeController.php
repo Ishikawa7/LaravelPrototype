@@ -6,6 +6,8 @@ use Illuminate\Routing\Controller as BaseController;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\Product;
+use App\Models\Review;
+use App\Models\Favourite;
 use Illuminate\Support\Facades\Http;
 
 class HomeController extends BaseController
@@ -36,6 +38,28 @@ class HomeController extends BaseController
         
         $products = Review::all();
         return $products;
+        
+    }
+
+    public function add_review($text, $id){     
+        return Review::create([
+            'TestoRecensione' => $text,
+            'CodUtente' => session('user_id'),
+            'CodProdotto' => $id
+        ]);
+        
+    }
+
+    public function add_favourites($id){     
+        return Favourite::create([
+            'RefCodProdotto' => $id,
+            'RefCodUtente' => session('user_id')
+        ]);
+        
+    }
+
+    public function remove_favourites($id){     
+        return Favourite::where('RefCodProdotto',$id)->where('RefCodUtente',session('user_id'))->delete();
         
     }
     

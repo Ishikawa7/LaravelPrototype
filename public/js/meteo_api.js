@@ -20,12 +20,12 @@ function inforMeteo(citta) {
 }
 
 function onResponseMeteo(response) {
-    console.log(response);
+    /* console.log(response); */
     return response.json();
 }
 
 function onJsonMeteo(json) {
-    console.log(json);
+    /* console.log(json); */
 
     const sectionMeteo = document.getElementById("sectionMeteo");
     sectionMeteo.classList.remove('hidden');
@@ -88,5 +88,4 @@ function closeInfoMeteo() {
 
 //Bottone informazioni Meteo
 const btnInfoMeteo = document.getElementById("btnInfoMeteo");
-console.log(btnInfoMeteo);
 btnInfoMeteo.addEventListener('click',inforMeteo('Catania'));
