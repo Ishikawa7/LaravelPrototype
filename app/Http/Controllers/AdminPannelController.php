@@ -20,7 +20,26 @@ class AdminPannelController extends BaseController
     }
 
     public function admin_stats(){
-        $result = DB::table('shoppings');
+        $admin= Admin::find(session('admin_id'));
+        $users = User::all();
+        $shoppings = Shopping::all();
+        //registro gli user id con spesa spedizione>100
+        $result_users = [];
+        foreach($users as $user){
+            if($user->spesaTotSpedizioni>100){
+                $result_users = $user->id;
+            }
+        }
+        //trovo gli user senza buono
+        foreach($result_users as $r){
+            foreach($shoppings as $s){
+                if($r == $s->utente){
+                    $result_users = $r;
+                }
+            }
+        }
+        return $result_users;
+
     }
 }
 ?>  

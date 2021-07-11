@@ -38,6 +38,8 @@ Route::post('registration/email','RegistrationController@checkEmail');
 
 Route::get('admin_pannel','AdminPannelController@index');
 
+Route::get('admin_pannel/admin_stats','AdminPannelController@admin_stats');
+
 //sto modificando da qui user info
 
 Route::get('user_info','UserInfoController@index');

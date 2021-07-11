@@ -4,7 +4,7 @@
 
   <head>
     <meta charset="utf-8">
-    <script src="admin_pannel.js" defer= "true"></script>
+    <script src="{{url('js/admin_pannel.js')}}" defer= "true"></script>
     <link href="{{url('css/admin_pannel.css')}}" rel="stylesheet" type="text/css"/> 
   </head>
   
