@@ -12,5 +12,9 @@ class Purchased_item extends Model
         'acquisto'
     ];
 
+    public function users(){
+        return $this->belogsTo("App\models\User");
+    }
+
 }
 ?>

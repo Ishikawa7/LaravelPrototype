@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Admin;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends BaseController
 {
@@ -34,7 +35,7 @@ public function checkLogin(){
                 ->with('csrf_token',csrf_token());
         }
     }else{
-        $user = User::where('email',request('email'))->where('password',request('password'))->first();
+        $user = User::where('email',request('email'))->where('password',$password)->first();
         if(isset($user)){
             //credenziali valide
             Session::put('user_id',$user->id);

@@ -13,5 +13,9 @@ class Review extends Model
         'CodUtente',
     ];
 
+    public function users(){
+        return $this->belogsTo("App\models\User");
+    }
+
 }
 ?>

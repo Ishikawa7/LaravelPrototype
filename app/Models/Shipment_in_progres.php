@@ -12,5 +12,13 @@ class Shipment_in_progres extends Authenticatable
         'acquisto',
         'utente'
     ];
+
+    public function users(){
+        return $this->belogsTo("App\models\User");
+    }
+
+    public function shopping(){
+        return $this->hasMany("App\models\Shopping");
+    }
 }
 ?>

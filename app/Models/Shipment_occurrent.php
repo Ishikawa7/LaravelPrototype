@@ -14,5 +14,14 @@ class Shipment_occurrent extends Authenticatable
         'costo',
         'dataConsegna'
     ];
+
+    public function users(){
+        return $this->belogsTo("App\models\User");
+    }
+
+    public function shopping(){
+        return $this->hasMany("App\models\Shopping");
+    }
+
 }
 ?>

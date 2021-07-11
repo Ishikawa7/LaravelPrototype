@@ -12,5 +12,9 @@ class Favourite extends Model
         'RefCodUtente'
     ];
 
+    public function users(){
+        return $this->belogsTo("App\models\User");
+    }
+
 }
 ?>

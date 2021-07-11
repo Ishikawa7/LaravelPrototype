@@ -16,5 +16,9 @@ class Product extends Model
         'Sconto'
     ];
 
+    public function users(){
+        return $this->belogsTo("App\models\User");
+    }
+
 }
 ?>
