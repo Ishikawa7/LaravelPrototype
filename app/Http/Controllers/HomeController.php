@@ -77,8 +77,7 @@ class HomeController extends BaseController
     $url = 'https://api.openweathermap.org/data/2.5/weather?q='.$city_name.'&appid='.$APIkey; 
     */
     public function meteo_api($city_name){
-        $APIkey = '0c9ca3df42eda585a44501afb92cc5ec';
-        $response = Http::get('https://api.openweathermap.org/data/2.5/weather?q='.$city_name.'&appid='.$APIkey); 
+        $response = Http::get('https://api.openweathermap.org/data/2.5/weather?q='.$city_name.'&appid='.env('API_KEY')); 
 
         if($response->failed()) abort(500);
 
