@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 });  */
 
 Route::get('home','HomeController@index');
+
 Route::get('home/load_products','HomeController@load_products');
+
 Route::get('home/load_reviews','HomeController@load_reviews');
 
 Route::get('login','LoginController@login');
