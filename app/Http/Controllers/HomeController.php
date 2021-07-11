@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Product;
 use Illuminate\Support\Facades\Http;
 
 class HomeController extends BaseController
@@ -22,6 +23,20 @@ class HomeController extends BaseController
         }
         return view('home')
             ->with('nome',null);
+    }
+
+    public function load_products(){
+        
+        $products = Product::all();
+        return $products;
+        
+    }
+
+    public function load_reviews(){
+        
+        $products = Review::all();
+        return $products;
+        
     }
     
     // URL: 'https://api.covid19api.com/summary'

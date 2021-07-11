@@ -8,9 +8,9 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link href="https://fonts.googleapis.com/css?family=Lora:400,400i|Open+Sans:400,700" rel="stylesheet"> 
       <link rel="stylesheet" href="{{url('css/index.css')}}">
-     <!--  <script type="text/javascript" src='script.js' defer="true"></script> -->
       <script type="text/javascript" src="{{url('js/covid_api.js')}}" defer="true"></script>
       <script type="text/javascript" src="{{url('js/meteo_api.js')}}" defer="true"></script>
+      <script type="text/javascript" src="{{url('js/products.js')}}" defer="true"></script>
       
    </head>
 <body> 

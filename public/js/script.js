@@ -151,7 +151,7 @@ function onResponseJson(response){
   if (response.status >= 200 && response.status < 300) {
       return response.json();
   }
-  console.error(response.statusText)
+  console.error(response.statusText);
 }
 
 function refreshReview(json){
