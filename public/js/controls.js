@@ -1,19 +1,19 @@
 function checkEmail(email)
 {  
+    console.log(email);
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     var isEmail= re.test(String(email).toLowerCase());
-    if(!isEmail)
-    {
-      document.getElementById("logemail").style.color='red';  
-      document.getElementById('logemail').innerHTML="&nbsp&nbsp&nbsp&nbsp Email non corretta";  
+    if(!isEmail){
+       console.log("email non conforme");
+      /* document.getElementById("logemail").style.color='red';  
+      document.getElementById('logemail').innerHTML="&nbsp&nbsp&nbsp&nbsp Email non corretta";   */
       
     }else{
-    
+      console.log('email conforme, procedo al controllo sul database');
       url='registration/email';
-      var formData = new FormData();
-      formData.append('email',email);
-      var admin=document.getElementById("mycheck").checked;
-      formData.append('admin',String(admin));
+      /* console.log(token.value); */
+      const admin=document.getElementById("checkbox").checked;
+      /* console.log(admin); */
       const token = document.getElementById("_token2");
 
       fetch(url,{headers:{
@@ -21,11 +21,14 @@ function checkEmail(email)
             "Accept": "application/json, text-plain, */*",
             "X-Requested-With": "XMLHttpRequest",
             "X-CSRF-TOKEN": token.value
-        },method:'POST', body: formData})
-      .then((res) =>res.json())
-      .then(response =>{
-        console.log(response);  
-        if (response.exists==false){
+        },method:'POST', body: JSON.stringify({email : email , admin: admin })})
+      .then(response => {
+        /* console.log(response); */
+        return response.json();
+      })
+      .then(json =>{
+        /* console.log(json); */  
+        if (json['result']=='not_present'){
             document.getElementById("logemail").style.color='green'; 
             document.getElementById('logemail').innerHTML="&nbsp&nbsp&nbsp&nbsp Email corretta e mai usata";
         }else{

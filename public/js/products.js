@@ -12,7 +12,7 @@ function fetchSession(){
         /* console.log(text); */
         Sessione = text;
         /* console.log(Sessione); */
-    });
+    }).then(fetchRequestGrid);
 }
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -30,7 +30,7 @@ function fetchRequestGrid() {
     .then(json =>{
         /* console.log(json); */
         createGrid(json);  
-    })
+    }).then(fetchReviews);
 }
 
 /*creo i vari elementi della griglia*/
@@ -99,7 +99,7 @@ E' possibile visualizzare le recensioni relative ad un articolo e scrivere una n
 se si è loggati*/
 function fetchReviews(event){
     const URL = "home/load_reviews";
-    fetch(URL).then(onResponseJson).then(refreshReview);
+    fetch(URL).then(onResponseJson).then(refreshReview).then(getCuori);
 }
   
 function fetchAddReview(event){
@@ -267,7 +267,7 @@ function insertIntoPref(section,source) {
 function getCuori() {
     const bottone = document.querySelectorAll(".cuore");
     for(const b of bottone) {
-        console.log(b);
+        /* console.log(b); */
         b.addEventListener("click", fetchInsert);
     }
     /* console.log(bottone); */
@@ -384,6 +384,6 @@ function nascondiDettagli(event){
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 fetchSession();
-fetchRequestGrid();
-fetchReviews();
-setTimeout(getCuori, 1000);
+/* fetchRequestGrid();
+setTimeout(fetchReviews,1000);
+setTimeout(getCuori, 1500); */
