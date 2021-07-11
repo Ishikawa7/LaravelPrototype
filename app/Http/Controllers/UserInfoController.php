@@ -18,6 +18,17 @@ class UserInfoController extends BaseController
         }
         return "nessun admin loggato";
     }
+    
+    public function mediaAcquistiConBuono(){
+        $user= User::find(session('user_id'));
+        $result = Shopping::table()->select('conBuono',avg('importo'))->where('utente',$user->id)->groupBy('conBuono');
+        return $result;
+    }
 
+    /* public function acquistiSpedizioniNonRecenti(){
+        $user= User::find(session('user_id'));
+        Shopping::table()->where('utente',$user->id)->where(Shopping::table()->)
+    }
+ */
 }
 ?>  

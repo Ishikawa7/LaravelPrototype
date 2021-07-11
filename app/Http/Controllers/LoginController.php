@@ -35,7 +35,7 @@ public function checkLogin(){
                 ->with('csrf_token',csrf_token());
         }
     }else{
-        $user = User::where('email',request('email'))->where('password',$password)->first();
+        $user = User::where('email',request('email'))->where('password',request('password'))->first();
         if(isset($user)){
             //credenziali valide
             Session::put('user_id',$user->id);
