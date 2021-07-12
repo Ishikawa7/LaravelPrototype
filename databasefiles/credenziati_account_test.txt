@@ -1,0 +1,7 @@
+ADMIN:
+email: d1@email.com
+pass: aA123
+
+USER:
+email: m1@email.com
+pass : aA123
