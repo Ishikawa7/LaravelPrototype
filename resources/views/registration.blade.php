@@ -20,7 +20,7 @@
             <form action="{{url('registration/create')}}" method="post">
                 
                 @csrf
-                <input type='hidden' name='_token2' value='{{$csrf_token}}'>
+                <input type='hidden' id='_token2' value='{{$csrf_token}}'>
                
                 <p>
                     <input type = 'checkbox' name='checkbox' value='admin' id="checkbox" onchange="clickAdmin()" >

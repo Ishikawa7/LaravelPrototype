@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class RegistrationController extends BaseController
 {
+    public function index(){
+        return view('registration')
+           ->with('csrf_token',csrf_token());
+    }
+
     public function create(){
         $request = request();
         
@@ -33,32 +38,23 @@ class RegistrationController extends BaseController
 
 
     public function checkEmail(Request $request){
-        
-        if($request->checkbox=="admin"){
-            $email=$request->get('email');
+        $ceck_result = [];
+        $ceck_result ['result'] ='not_present';
+        $email=$request->email;
+        /* return ['result'=> $request->admin]; */
+        if($request->admin){
             $count_email = Admin::where('email',$email)->get()->count();
-            $ceck_result = [];
-            $ceck_result ['result'] ='false';
             if($count_email>0){
-                $ceck_result ['result'] ='true' ; //array che poi verrà convertito in json
+                $ceck_result ['result'] ='present' ; //array che poi verrà convertito in json
             }
             return $ceck_result;
         }else{
-            
-            $email=$request->get('email');
             $count_email = User::where('email',$email)->get()->count();
-            $ceck_result = [];
-            $ceck_result ['result'] ='false';
             if($count_email>0){
-                $ceck_result ['result'] ='true' ; //array che poi verrà convertito in json
+                $ceck_result ['result'] ='present' ; //array che poi verrà convertito in json
             }
             return $ceck_result;
         }
-    }
-
-    public function index(){
-        return view('registration')
-           ->with('csrf_token',csrf_token());
     }
 }
 ?>
