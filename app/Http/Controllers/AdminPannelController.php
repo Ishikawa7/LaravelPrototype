@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Admin;
 use App\Models\Product;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
 
 class AdminPannelController extends BaseController
 {
@@ -20,26 +21,31 @@ class AdminPannelController extends BaseController
     }
 
     public function admin_stats(){
-        $admin= Admin::find(session('admin_id'));
-        $users = User::all();
-        $shoppings = Shopping::all();
-        //registro gli user id con spesa spedizione>100
-        $result_users = [];
-        foreach($users as $user){
-            if($user->spesaTotSpedizioni>100){
-                $result_users = $user->id;
-            }
-        }
-        //trovo gli user senza buono
-        foreach($result_users as $r){
-            foreach($shoppings as $s){
-                if($r == $s->utente){
-                    $result_users = $r;
-                }
-            }
-        }
-        return $result_users;
+        $result = DB::select(
+            "SELECT * FROM shoppings
+            WHERE id IN (
+                SELECT s.id 
+                FROM shoppings as s, users as u
+                WHERE s.utente = u.id AND u.spesaTotSpedizioni > 100 AND s.conBuono = FALSE
+                )"
+        );
+        return $result;
+    
+    }
 
+    public function admin_sales(){
+        $result = DB::select(
+            "UPDATE products SET Sconto = CASE  
+                WHEN Prezzo >= 500 THEN 50 
+                WHEN Prezzo >= 300 AND Prezzo < 500 THEN 30
+                WHEN Prezzo >= 100 AND Prezzo < 300 THEN 10
+                ELSE 0
+                END"
+                );
+        $result1 = DB::select("UPDATE products SET PrezzoScontato = Prezzo * (1 - Sconto/100)");
+
+        return 'success'; //controllo da implementare: prima veniva fatto in modo diverso con php
+    
     }
 }
 ?>  

@@ -41,14 +41,16 @@ Route::post('registration/create','RegistrationController@create');
 
 Route::post('registration/email','RegistrationController@checkEmail');
 //sto modificando da qui admin pannel
-
 Route::get('admin_pannel','AdminPannelController@index');
 
 Route::get('admin_pannel/admin_stats','AdminPannelController@admin_stats');
 
+Route::get('admin_pannel/admin_sales','AdminPannelController@admin_sales');
 //sto modificando da qui user info
 
 Route::get('user_info','UserInfoController@index');
+Route::get('user_info/media_acquisti','UserInfoController@media_acquisti');
+Route::get('user_info/acquisti_spedizioni_non_recenti','UserInfoController@acquisti_spedizioni_non_recenti');
 
 Route::get('home/covid_api','HomeController@covid_api');
 
@@ -63,7 +65,3 @@ Route::get('get_session', function() {
     }
     return 'null';
 });
-
-Route::get('user','UserController@index');
-
-Route::get('admin','AdminController@index');

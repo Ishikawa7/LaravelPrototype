@@ -1,6 +1,6 @@
  function successOrNot(text)
    {
-   if(text=="succes"){
+   if(text=="success"){
         alert("Saldi settati con successo!");
     }else{
        alert("Saldi non settati con successo o gia' settati");  
@@ -52,12 +52,12 @@ function onResponseJson(response){
 
 /*Quando si verifica l'evento queste due funzioni fanno partire le relative chiamate asincrone*/ 
 function fetchSales(event){
-    const URL = "admin_pannel_sales.php";
+    const URL = "admin_pannel/admin_sales";
     fetch(URL).then(onResponseText).then(successOrNot);
 }
 
 function fetchStats(event){
-    const URL = "admin_pannel_stats.php";
+    const URL = "admin_pannel/admin_stats";
     fetch(URL).then(onResponseJson).then(dyslayAdminStats);
 }
 

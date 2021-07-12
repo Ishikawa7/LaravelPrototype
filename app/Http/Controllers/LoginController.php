@@ -24,8 +24,8 @@ class LoginController extends BaseController
 
 public function checkLogin(){
     if(request('checkbox')=="admin"){
-        $admin = Admin::where('email',request('email'))->where('password',request('password'))->first(); 
-        if(isset($admin)){
+        $admin = Admin::where('email',request('email'))->first(); 
+        if(isset($admin) && Hash::check(request('password'),$admin->password)){
             //credenziali valide
             Session::put('admin_id',$admin->id);
             return view('home')

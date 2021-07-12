@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
     <link href="{{url('css/user_info.css')}}" rel="stylesheet" type="text/css"/> 
-    <script src="user_info.js" defer = "true"></script>
+    <script src="{{url('js/user_info.js')}}" defer = "true"></script>
   </head>
 
   
