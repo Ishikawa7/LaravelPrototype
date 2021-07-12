@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Lug 11, 2021 alle 11:27
--- Versione del server: 10.4.19-MariaDB
--- Versione PHP: 8.0.7
+-- Generation Time: Jul 12, 2021 at 11:57 AM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `admins`
+-- Table structure for table `admins`
 --
 
 CREATE TABLE `admins` (
@@ -37,17 +37,18 @@ CREATE TABLE `admins` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dump dei dati per la tabella `admins`
+-- Dumping data for table `admins`
 --
 
 INSERT INTO `admins` (`id`, `email`, `password`, `sale`, `created_at`, `updated_at`) VALUES
 (1, 'nadiaorlando97@gmail.com', 'e36000d449c8fbd73966b0ce7d9f86a5', '9652b811bacf6c6cf24f', '2021-07-09 15:43:09', '2021-07-09 15:43:09'),
-(4, 'nadia@libero.it', '574124c85909d48fd9ee24da8b544121', '626fe61eb00d64b0c019', '2021-07-09 15:43:09', '2021-07-09 15:43:09');
+(4, 'nadia@libero.it', '574124c85909d48fd9ee24da8b544121', '626fe61eb00d64b0c019', '2021-07-09 15:43:09', '2021-07-09 15:43:09'),
+(8, 'd1@email.com', '$2y$10$Az4prT6kb8/qMLqkwfCXAel.mvpK2OKUvTc0wQtgfLxakpBoIZdBa', NULL, '2021-07-12 07:06:44', '2021-07-12 07:06:44');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `carts`
+-- Table structure for table `carts`
 --
 
 CREATE TABLE `carts` (
@@ -64,13 +65,13 @@ CREATE TABLE `carts` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `favourites`
+-- Table structure for table `favourites`
 --
 
 CREATE TABLE `favourites` (
   `RefCodProdotto` int(8) NOT NULL,
   `RefCodUtente` int(8) NOT NULL,
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -78,7 +79,7 @@ CREATE TABLE `favourites` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `products`
+-- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
@@ -94,13 +95,13 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
 --
--- Dump dei dati per la tabella `products`
+-- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`id`, `NomeProdotto`, `Descrizione`, `Prezzo`, `PercorsoImg`, `PrezzoScontato`, `Sconto`, `created_at`, `updated_at`) VALUES
 (1, 'Jacquemus', 'Borsa media in pelle bianca', 525, './css/jaquemus.jpg', 262.5, 50, '2021-07-11 09:03:47', '2021-07-11 09:03:47'),
 (2, 'Gucci', 'Borsa GG con catena', 1500, './css/gucci1.jpg', 750, 50, '2021-07-11 09:03:47', '2021-07-11 09:03:47'),
-(3, 'Louis Vuitton', 'Borsetta piccola con logo', 1200, './css/LV8.jpg', 600, 50, '2021-07-11 09:03:47', '2021-07-11 09:03:47'),
+(3, 'Louis Vuitton', 'Borsetta piccola con logo', 1400, './css/LV8.jpg', 700, 50, '2021-07-11 09:03:47', '2021-07-11 09:03:47'),
 (4, 'Chanel', 'Borsa piccola con tracolla', 2000, './css/chanel.jpg', 1000, 50, '2021-07-11 09:03:47', '2021-07-11 09:03:47'),
 (5, 'Michael Kors', 'Zaino con doppie cerniere', 350, './css/zaino.jpg', 245, 30, '2021-07-11 09:03:47', '2021-07-11 09:03:47'),
 (6, 'Moschino', 'Borsa grande LOVE a spalla', 180, './css/moschino.jpg', 162, 10, '2021-07-11 09:03:47', '2021-07-11 09:03:47'),
@@ -111,7 +112,7 @@ INSERT INTO `products` (`id`, `NomeProdotto`, `Descrizione`, `Prezzo`, `Percorso
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `purchased_items`
+-- Table structure for table `purchased_items`
 --
 
 CREATE TABLE `purchased_items` (
@@ -125,7 +126,7 @@ CREATE TABLE `purchased_items` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `reviews`
+-- Table structure for table `reviews`
 --
 
 CREATE TABLE `reviews` (
@@ -138,7 +139,7 @@ CREATE TABLE `reviews` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dump dei dati per la tabella `reviews`
+-- Dumping data for table `reviews`
 --
 
 INSERT INTO `reviews` (`id`, `TestoRecensione`, `CodProdotto`, `CodUtente`, `created_at`, `updated_at`) VALUES
@@ -150,15 +151,18 @@ INSERT INTO `reviews` (`id`, `TestoRecensione`, `CodProdotto`, `CodUtente`, `cre
 (14, 'Bellissima', 1, 2, '2021-07-11 09:09:46', '2021-07-11 09:09:46'),
 (23, 'Molto capiente!', 5, 7, '2021-07-11 09:09:46', '2021-07-11 09:09:46'),
 (24, 'Ottima qualità', 2, 7, '2021-07-11 09:09:46', '2021-07-11 09:09:46'),
-(25, 'Mi piace tantissimo', 3, 7, '2021-07-11 09:09:46', '2021-07-11 09:09:46');
+(25, 'Mi piace tantissimo', 3, 7, '2021-07-11 09:09:46', '2021-07-11 09:09:46'),
+(28, 'Non mi piace', 2, 21, '2021-07-11 09:53:04', '2021-07-11 09:53:04'),
+(29, 'Bello', 2, 21, '2021-07-11 09:55:42', '2021-07-11 09:55:42'),
+(30, 'Bellissima', 1, 21, '2021-07-11 09:55:54', '2021-07-11 09:55:54');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `shipments_in_progres`
+-- Table structure for table `shipment_in_progress`
 --
 
-CREATE TABLE `shipments_in_progres` (
+CREATE TABLE `shipment_in_progress` (
   `dataInvio` date NOT NULL,
   `acquisto` int(11) NOT NULL,
   `utente` int(11) NOT NULL,
@@ -168,22 +172,24 @@ CREATE TABLE `shipments_in_progres` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dump dei dati per la tabella `shipments_in_progres`
+-- Dumping data for table `shipment_in_progress`
 --
 
-INSERT INTO `shipments_in_progres` (`dataInvio`, `acquisto`, `utente`, `id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `shipment_in_progress` (`dataInvio`, `acquisto`, `utente`, `id`, `created_at`, `updated_at`) VALUES
 ('2020-05-01', 3, 2, 0, '2021-07-11 09:22:29', '2021-07-11 09:22:29'),
 ('2020-04-03', 4, 2, 0, '2021-07-11 09:22:29', '2021-07-11 09:22:29'),
 ('2021-01-20', 6, 7, 0, '2021-07-11 09:22:29', '2021-07-11 09:22:29'),
-('2021-02-01', 7, 7, 0, '2021-07-11 09:22:29', '2021-07-11 09:22:29');
+('2021-02-01', 7, 7, 0, '2021-07-11 09:22:29', '2021-07-11 09:22:29'),
+('2021-01-20', 9, 22, 0, '2021-07-11 09:22:29', '2021-07-11 09:22:29'),
+('2021-02-01', 10, 22, 0, '2021-07-11 09:22:29', '2021-07-11 09:22:29');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `shipment_occurreds`
+-- Table structure for table `shipment_occurrents`
 --
 
-CREATE TABLE `shipment_occurreds` (
+CREATE TABLE `shipment_occurrents` (
   `dataInvio` date NOT NULL,
   `acquisto` int(11) NOT NULL,
   `utente` int(11) NOT NULL,
@@ -195,17 +201,18 @@ CREATE TABLE `shipment_occurreds` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dump dei dati per la tabella `shipment_occurreds`
+-- Dumping data for table `shipment_occurrents`
 --
 
-INSERT INTO `shipment_occurreds` (`dataInvio`, `acquisto`, `utente`, `costo`, `dataConsegna`, `id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `shipment_occurrents` (`dataInvio`, `acquisto`, `utente`, `costo`, `dataConsegna`, `id`, `created_at`, `updated_at`) VALUES
 ('2020-04-03', 4, 2, 150, '2020-04-10', 0, '2021-07-11 09:20:22', '2021-07-11 09:20:22'),
-('2020-02-05', 5, 7, 120, '2020-02-10', 0, '2021-07-11 09:20:22', '2021-07-11 09:20:22');
+('2020-02-05', 8, 7, 120, '2020-02-10', 0, '2021-07-11 09:20:22', '2021-07-11 09:20:22'),
+('2020-02-05', 11, 22, 120, '2020-02-10', 0, '2021-07-11 09:20:22', '2021-07-11 09:20:22');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `shoppings`
+-- Table structure for table `shoppings`
 --
 
 CREATE TABLE `shoppings` (
@@ -218,7 +225,7 @@ CREATE TABLE `shoppings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dump dei dati per la tabella `shoppings`
+-- Dumping data for table `shoppings`
 --
 
 INSERT INTO `shoppings` (`id`, `conBuono`, `importo`, `utente`, `created_at`, `updated_at`) VALUES
@@ -227,12 +234,15 @@ INSERT INTO `shoppings` (`id`, `conBuono`, `importo`, `utente`, `created_at`, `u
 (5, 1, 300, 2, '2021-07-11 09:08:01', '2021-07-11 09:08:01'),
 (6, 0, 450, 7, '2021-07-11 09:08:01', '2021-07-11 09:08:01'),
 (7, 0, 600, 7, '2021-07-11 09:08:01', '2021-07-11 09:08:01'),
-(8, 1, 700, 7, '2021-07-11 09:08:01', '2021-07-11 09:08:01');
+(8, 1, 700, 7, '2021-07-11 09:08:01', '2021-07-11 09:08:01'),
+(9, 0, 450, 22, '2021-07-12 08:07:41', '2021-07-12 08:07:41'),
+(10, 0, 600, 22, '2021-07-12 08:07:41', '2021-07-12 08:07:41'),
+(11, 1, 700, 22, '2021-07-12 08:07:41', '2021-07-12 08:07:41');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -246,158 +256,160 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dump dei dati per la tabella `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `sale`, `spesaTotSpedizioni`, `created_at`, `updated_at`) VALUES
 (2, 'nadiaorlando97@gmail.com', '2694834590e19fd711925f50f17f4446', 'e1da813e83efe42eea44', 150, '2021-07-09 15:39:02', '2021-07-09 15:39:02'),
 (3, 'pippo@hotmail.com', '2147395256c6ab834126e5400e79de6f', '2d83ce421eee424141be', 0, '2021-07-09 15:39:02', '2021-07-09 15:39:02'),
 (6, 'mariello@hotmail.com', 'ee4e7b493013cc19e73a453c90fd50ee', 'f4bece3d5dcf91360552', 0, '2021-07-09 15:39:02', '2021-07-09 15:39:02'),
-(7, 'maria@hotmail.com', '92560afe60581204aefb2a669094acf8', '536c2f0e8bb7a71d5919', 120, '2021-07-09 15:39:02', '2021-07-09 15:39:02');
+(7, 'maria@hotmail.com', '92560afe60581204aefb2a669094acf8', '536c2f0e8bb7a71d5919', 120, '2021-07-09 15:39:02', '2021-07-09 15:39:02'),
+(21, 'd@email.it', '123', '0', 20, '2021-07-11 11:35:15', '2021-07-11 11:35:15'),
+(22, 'm1@email.com', '$2y$10$fIP3pvHI3DLNuph5tshHIO7l62hYNa2nkpWX9Wt88SjgIsJf5r8ZS', NULL, NULL, '2021-07-11 16:47:42', '2021-07-11 16:47:42');
 
 --
--- Indici per le tabelle scaricate
+-- Indexes for dumped tables
 --
 
 --
--- Indici per le tabelle `admins`
+-- Indexes for table `admins`
 --
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `carts`
+-- Indexes for table `carts`
 --
 ALTER TABLE `carts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `favourites`
+-- Indexes for table `favourites`
 --
 ALTER TABLE `favourites`
   ADD PRIMARY KEY (`RefCodProdotto`,`RefCodUtente`,`id`),
   ADD KEY `RefCodUtente` (`RefCodUtente`);
 
 --
--- Indici per le tabelle `products`
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `purchased_items`
+-- Indexes for table `purchased_items`
 --
 ALTER TABLE `purchased_items`
   ADD PRIMARY KEY (`CodProdotto`,`acquisto`,`id`),
   ADD KEY `articoliacquistati_ibfk_1` (`acquisto`);
 
 --
--- Indici per le tabelle `reviews`
+-- Indexes for table `reviews`
 --
 ALTER TABLE `reviews`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `shipments_in_progres`
+-- Indexes for table `shipment_in_progress`
 --
-ALTER TABLE `shipments_in_progres`
+ALTER TABLE `shipment_in_progress`
   ADD PRIMARY KEY (`acquisto`,`utente`,`id`),
   ADD KEY `spedizioniincorso_ibfk_1` (`utente`);
 
 --
--- Indici per le tabelle `shipment_occurreds`
+-- Indexes for table `shipment_occurrents`
 --
-ALTER TABLE `shipment_occurreds`
+ALTER TABLE `shipment_occurrents`
   ADD PRIMARY KEY (`acquisto`,`utente`,`id`),
   ADD KEY `spedizioneavvenuta_ibfk_2` (`utente`);
 
 --
--- Indici per le tabelle `shoppings`
+-- Indexes for table `shoppings`
 --
 ALTER TABLE `shoppings`
   ADD PRIMARY KEY (`id`),
   ADD KEY `acquisto_ibfk_1` (`utente`);
 
 --
--- Indici per le tabelle `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT per le tabelle scaricate
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT per la tabella `admins`
+-- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT per la tabella `carts`
+-- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT per la tabella `products`
+-- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT per la tabella `reviews`
+-- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT per la tabella `shoppings`
+-- AUTO_INCREMENT for table `shoppings`
 --
 ALTER TABLE `shoppings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT per la tabella `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- Limiti per le tabelle scaricate
+-- Constraints for dumped tables
 --
 
 --
--- Limiti per la tabella `favourites`
+-- Constraints for table `favourites`
 --
 ALTER TABLE `favourites`
   ADD CONSTRAINT `favourites_ibfk_1` FOREIGN KEY (`RefCodProdotto`) REFERENCES `products` (`id`),
   ADD CONSTRAINT `favourites_ibfk_2` FOREIGN KEY (`RefCodUtente`) REFERENCES `users` (`id`);
 
 --
--- Limiti per la tabella `purchased_items`
+-- Constraints for table `purchased_items`
 --
 ALTER TABLE `purchased_items`
   ADD CONSTRAINT `purchased_items_ibfk_1` FOREIGN KEY (`acquisto`) REFERENCES `shoppings` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `purchased_items_ibfk_2` FOREIGN KEY (`CodProdotto`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limiti per la tabella `shipments_in_progres`
+-- Constraints for table `shipment_in_progress`
 --
-ALTER TABLE `shipments_in_progres`
-  ADD CONSTRAINT `shipments_in_progres_ibfk_1` FOREIGN KEY (`utente`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `shipments_in_progres_ibfk_2` FOREIGN KEY (`acquisto`) REFERENCES `shoppings` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `shipment_in_progress`
+  ADD CONSTRAINT `shipment_in_progress_ibfk_1` FOREIGN KEY (`utente`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `shipment_in_progress_ibfk_2` FOREIGN KEY (`acquisto`) REFERENCES `shoppings` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limiti per la tabella `shipment_occurreds`
+-- Constraints for table `shipment_occurrents`
 --
-ALTER TABLE `shipment_occurreds`
-  ADD CONSTRAINT `shipment_occurreds_ibfk_1` FOREIGN KEY (`acquisto`) REFERENCES `shoppings` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `shipment_occurreds_ibfk_2` FOREIGN KEY (`utente`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `shipment_occurrents`
+  ADD CONSTRAINT `shipment_occurrents_ibfk_1` FOREIGN KEY (`acquisto`) REFERENCES `shoppings` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `shipment_occurrents_ibfk_2` FOREIGN KEY (`utente`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limiti per la tabella `shoppings`
+-- Constraints for table `shoppings`
 --
 ALTER TABLE `shoppings`
   ADD CONSTRAINT `shoppings_ibfk_1` FOREIGN KEY (`utente`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
